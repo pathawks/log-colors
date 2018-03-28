@@ -1,0 +1,14 @@
+#!/bin/bash
+
+tail -f $1 | gawk '{
+if ($0 ~ /FATAL/)
+	print "\033[41;39m" $0 "\033[39;49m"
+else if ($0 ~ /ERROR/)
+	print "\033[33m" $0 "\033[39m"
+else if ($0 ~ /WARN/)
+	print "\033[33m" $0 "\033[39m"
+else if ($0 ~ /DEBUG/)
+	print "\033[32m" $0 "\033[39m"
+else
+	print $0
+}'
